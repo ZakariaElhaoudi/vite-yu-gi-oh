@@ -14,6 +14,7 @@ export default {
 
 <template>
   <AppHeader />
+  <ListCards />
 </template>
 
 <style lang="scss"></style>
