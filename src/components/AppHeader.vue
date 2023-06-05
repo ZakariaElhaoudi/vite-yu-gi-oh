@@ -1,12 +1,20 @@
 <script>
 export default {
     name: "AppHeader",
+    props: ["message"]
 }
 </script>
 
 <template>
     <header class="container">
-        <h1>Yu-Gi-Oh Api</h1>
+        <div class="row">
+            <div class="col-4">
+                <img src="../assets/ygoprodeck_logo.png" alt="">
+            </div>
+            <div class="col-8">
+                <h1>{{ message }}</h1>
+            </div>
+        </div>
     </header>
 </template>
 

@@ -9,13 +9,14 @@ export default {
 </script>
 
 <template>
-    <main class="pt-4">
-        <div class="container bg-light">
-            <div class="row">
-                <div class="col-6"></div>
-                <img src="img" alt="img">
-                <h3>dati</h3>
-                <h3>dati</h3>
+    <main class="py-4">
+        <div class="container bg-light py-2 px-2">
+            <div class="row text-center ">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <img src="img" alt="img">
+                    <h3>dati</h3>
+                    <h3>dati</h3>
+                </div>
             </div>
         </div>
     </main>
