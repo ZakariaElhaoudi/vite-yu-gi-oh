@@ -17,6 +17,9 @@ export default {
 <template>
     <main class="py-4">
         <div class="container bg-light py-2 px-2">
+            <div class="row bg-dark">
+                <h3>Foun 39 cards</h3>
+            </div>
             <div class="row text-center ">
                 <SingleCard v-for="card in store.listCards" :details="card" />
             </div>
@@ -29,5 +32,9 @@ export default {
 
 main {
     background-color: $primary;
+}
+
+h3 {
+    color: white;
 }
 </style>
