@@ -16,11 +16,19 @@ export default {
       store,
     }
   },
+  methods: {
+    getCards() {
+      axios.get(store.apiURL)
+        .then(card => {
+          store.listCards = card.data;
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
+  },
   created() {
-    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-      .then(card => {
-        console.log(card);
-      })
+    this.getCards();
   }
 }
 </script>
