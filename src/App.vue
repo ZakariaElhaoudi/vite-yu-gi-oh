@@ -4,12 +4,15 @@ import axios from 'axios'
 import AppHeader from './components/AppHeader.vue'
 import ListCards from './components/ListCards.vue'
 import AppLoading from './components/AppLoading.vue'
+import AppFilter from './components/AppFilter.vue'
+
 export default {
   name: 'App',
   components: {
     AppHeader,
     ListCards,
-    AppLoading
+    AppLoading,
+    AppFilter
 
   },
   data() {
@@ -38,6 +41,7 @@ export default {
 
 <template>
   <AppHeader message="Yu-Gi-Oh Api" />
+  <AppFilter />
   <AppLoading v-if="store.loading" />
   <ListCards />
 </template>
