@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             listCharater: [],
-
+            selectedOption: null,
         }
     },
     methods: {
@@ -18,11 +18,22 @@ export default {
                 .catch(error => {
                     console.log(error);
                 })
+        },
+        getArchetype() {
+            axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php=${selectedOption}')
+                .then(response => {
+                    const archetype = response.data;
+                    console.log(archetype);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
+
 
     },
     mounted() {
-        this.getCharaters(); // Chiamata alla funzione per recuperare i dati quando il componente viene montato
+        this.getCharaters();
     }
 }
 </script>
@@ -32,9 +43,9 @@ export default {
         <div class="container">
             <div class="row">
                 <div class="col-12  pt-3">
-                    <select name="filter" id="filter">
-                        <option v-for="character in listCharater" value="character" :key="character">
-                            {{ character }}
+                    <select v-model="selectedOption" @click="getArchetype" name="filter" id="filter">
+                        <option v-for="character in listCharater" :value="character" :key="character">
+                            {{ character.archetype_name }}
                         </option>
                     </select>
                 </div>
