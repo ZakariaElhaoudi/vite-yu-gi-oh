@@ -1,12 +1,28 @@
 <script>
+import axios from 'axios';
 export default {
     name: "AppFilter",
     data() {
         return {
-            store
+            listCharater: [],
 
         }
+    },
+    methods: {
+        getCharaters() {
+            axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+                .then(response => {
+                    this.listCharater = response.data;
+                    console.log(this.listCharater);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
 
+    },
+    mounted() {
+        this.getCharaters(); // Chiamata alla funzione per recuperare i dati quando il componente viene montato
     }
 }
 </script>
@@ -16,10 +32,10 @@ export default {
         <div class="container">
             <div class="row">
                 <div class="col-12  pt-3">
-                    <select v-model="selectedOption" name="filter" id="filter">
-                        <option value="Alien">Alien</option>
-                        <option value="Dark Magician">Dark Magician</option>
-                        <option value="Blue-Eyes">Blue-Eyes</option>
+                    <select name="filter" id="filter">
+                        <option v-for="character in listCharater" value="character" :key="character">
+                            {{ character }}
+                        </option>
                     </select>
                 </div>
             </div>
