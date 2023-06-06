@@ -17,10 +17,10 @@ export default {
 <template>
     <main class="py-4">
         <div class="container bg-light py-4 px-4">
-            <div class="row bg-dark">
-                <h3>Foun 20 cards</h3>
+            <div class="row bg-dark mx-4">
+                <h3>Foun {{ store.listCards.length }} cards</h3>
             </div>
-            <div class="row text-center ">
+            <div class="row text-center mx-4">
                 <SingleCard v-for="card in store.listCards" :details="card" />
             </div>
         </div>
