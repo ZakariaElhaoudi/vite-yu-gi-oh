@@ -1,11 +1,12 @@
 <script>
+import { store } from '../store';
 import axios from 'axios';
 export default {
     name: "AppFilter",
     data() {
         return {
+            store,
             listCharater: [],
-            selectedOption: null,
         }
     },
     methods: {
@@ -19,18 +20,6 @@ export default {
                     console.log(error);
                 })
         },
-        getArchetype() {
-            axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php=${selectedOption}')
-                .then(response => {
-                    const archetype = response.data;
-                    console.log(archetype);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-
-
     },
     mounted() {
         this.getCharaters();
@@ -43,8 +32,8 @@ export default {
         <div class="container">
             <div class="row">
                 <div class="col-12  pt-3">
-                    <select v-model="selectedOption" @click="getArchetype" name="filter" id="filter">
-                        <option v-for="character in listCharater" :value="character" :key="character">
+                    <select v-model="store.selectedOption" @change="$emit('getArchetype')" name="filter" id="filter">
+                        <option v-for="(character, index ) in listCharater" :value="character.archetype_name" :key="index">
                             {{ character.archetype_name }}
                         </option>
                     </select>

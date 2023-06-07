@@ -22,6 +22,8 @@ export default {
   },
   methods: {
     getCards() {
+
+
       axios.get(store.apiURL)
         .then(card => {
           store.listCards = card.data.data;
@@ -32,17 +34,28 @@ export default {
           console.log(error);
         })
     },
+    getArchetype() {
+      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0&${selectedOption}')
+        .then(response => {
+          const archetype = response.data.
+            console.log(archetype);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
 
   },
   created() {
     this.getCards();
+    this.getArchetype();
   }
 }
 </script>
 
 <template>
   <AppHeader message="Yu-Gi-Oh Api" />
-  <AppFilter />
+  <AppFilter @getArchetype="getArchetype" />
   <AppLoading v-if="store.loading" />
   <ListCards />
 </template>
